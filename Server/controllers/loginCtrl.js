@@ -21,7 +21,7 @@ const loginCtrl = {
                 })
                 const otp = JSON.stringify(otpCode)
                 const email = req.body.email
-                mailer(email, otp)
+                // mailer(email, otp)
                 let otpResponse = await otpData.save();
 
                 const phone = JSON.stringify(req.body.phone)
@@ -64,29 +64,29 @@ const loginCtrl = {
 //         return res.status(500).json({ msg: error.message });
 //     }
 // }
-const mailer = (email, otp) => {
-    var transporter = nodemailer.createTransport({
-        service: "gmail",
-        port: 587,
-        secureConnection: false,
-        auth: {
-            user: process.env.USER,
-            pass: process.env.PASS
-        }
-    });
+// const mailer = (email, otp) => {
+//     var transporter = nodemailer.createTransport({
+//         service: "gmail",
+//         port: 587,
+//         secureConnection: false,
+//         auth: {
+//             user: process.env.USER,
+//             pass: process.env.PASS
+//         }
+//     });
 
-    var mailOptions = {
-        from: process.env.USER,
-        to: email,
-        subject: 'Your OTP for SignIN',
-        text: otp,
-    };
+//     var mailOptions = {
+//         from: process.env.USER,
+//         to: email,
+//         subject: 'Your OTP for SignIN',
+//         text: otp,
+//     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error.message);
-        }
-        console.log('Email Sent at ' + email);
-    });
-}
+//     transporter.sendMail(mailOptions, function (error, info) {
+//         if (error) {
+//             console.log(error.message);
+//         }
+//         console.log('Email Sent at ' + email);
+//     });
+// }
 module.exports = loginCtrl

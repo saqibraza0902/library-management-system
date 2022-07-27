@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 
 const Nav = () => {
@@ -46,7 +46,7 @@ const Nav = () => {
                                         <Link className="nav-link active" to="/admin/books" ><i className="bi bi-book-fill fs-5 me-1"></i>Books</Link>
                                     </li>
                                     :
-                                    <li className="nav-item" onClick={()=>toast('You are restricted')}>
+                                    <li className="nav-item" onClick={() => toast('You are restricted')}>
                                         <span type='button' className="nav-link active"><i className="bi bi-book-fill fs-5 me-1"></i>Books</span>
                                     </li>
                             }

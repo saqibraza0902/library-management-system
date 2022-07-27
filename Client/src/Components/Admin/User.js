@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Nav from './Nav';
-// import axios from 'axios';
+import { useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify';
 import axiosApi from '../../axios/axiosInstance';
@@ -55,14 +55,20 @@ const User = () => {
         setUser(del.user)
         toast(deleteUser.data.message)
     }
+    const getrole = useSelector((state) => state.login.loggedInUser)
     useEffect(() => {
         const get = async () => {
             const getting = await axiosApi.get('user/all-users')
             setUser(getting.data)
         }
         get()
+        const getting = () => {
+            if (getrole.role === 'Super Admin') {
+                setGetRole(1)
+            }
+        }
         getting()
-    }, [])
+    }, [getrole])
 
     const handleUpdate = (e) => {
         setLgShow(true)
@@ -74,12 +80,8 @@ const User = () => {
         setRole(e.role)
         setPassword(e.password);
     }
-    const getting = () => {
-        const getrole = JSON.parse(localStorage.getItem('user'))
-        if (getrole.role === 'Super Admin') {
-            setGetRole(1)
-        }
-    }
+    
+    
     return (
         <div>
             <Nav />

@@ -4,9 +4,8 @@ import swal from 'sweetalert';
 import Header from './Header'
 import Modal from 'react-bootstrap/Modal';
 import axiosApi from '../axios/axiosInstance';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
-// import { userAction } from '../Redux/Actions/Actions';
 
 const Admin = () => {
     const [email, setEmail] = useState();
@@ -45,7 +44,6 @@ const Admin = () => {
                 timer: 3000,
             }).then(() => {
                 localStorage.setItem('user', JSON.stringify(data.detail.user))
-                // dispatch(userAction(data.detail.user))
                 localStorage.setItem('token', data.token)
                 window.location.href = '/admin/dashboard'
             })
@@ -63,7 +61,7 @@ const Admin = () => {
             toast('You are already Login')
             navigate('/admin/dashboard')
         }
-    },[logUser])
+    },[logUser, navigate])
     
     return (
         <div>
